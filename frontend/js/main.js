@@ -10,16 +10,30 @@ const boardElm = document.querySelector('#board')
 displayMessages()
 
 // Event handlers
-sendButton.addEventListener('click', (event) => {
+
+formElm.addEventListener('submit', async (event) => {
   event.preventDefault()
+
   const formData = new FormData(formElm)
   const username = formData.get('username')
   const message = formData.get('message')
-  console.log(`${username} - ${message}`)
+
+  // inserting
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    body: JSON.stringify({ username, message }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const inserted = await response.json()
+  console.log(inserted)
+
+  formElm.reset()
 })
 
 // Utils
-
 async function displayMessages() {
   const response = await fetch(API_URL)
   const messages = await response.json()

@@ -12,7 +12,11 @@ router.get('/', async (req, res) => {
   // limit the limit
   limit = Math.min(limit, 40)
 
-  const messages = await Messages.findAll({ limit, offset })
+  const messages = await Messages.findAll({
+    order: [['createdAt', 'DESC']],
+    limit,
+    offset,
+  })
   res.json({
     data: messages,
     pagination: {
@@ -25,6 +29,7 @@ router.get('/', async (req, res) => {
 // insert message
 router.post('/', async (req, res) => {
   const { username, message } = req.body
+  console.log({ username, message })
   const inserted = await Messages.create({ username, message })
   res.json({
     message: 'Message has been successfully inserted',
