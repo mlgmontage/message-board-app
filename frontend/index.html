@@ -17,7 +17,8 @@
             <label for="usernameInput">Your username</label>
             <input
               class="u-full-width"
-              type="email"
+              type="text"
+              name="username"
               placeholder="Your username"
               id="usernameInput"
             />
@@ -27,11 +28,20 @@
             class="u-full-width"
             placeholder="Hi Dave …"
             id="messageInput"
+            name="message"
           ></textarea>
-          <input class="button-primary" type="submit" value="Send" />
+          <input
+            class="button-primary"
+            id="sendButton"
+            type="submit"
+            value="Send"
+          />
         </div>
       </form>
       <!-- End of Message form -->
+      <div class="row">
+        <div class="u-full-width" id="board"></div>
+      </div>
     </div>
     <script src="./js/main.js"></script>
   </body>

@@ -1,3 +1,10 @@
 .welcome {
   text-align: center;
 }
+
+.entry {
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #eee;
+  box-shadow: 5px 5px #ddd;
+}
