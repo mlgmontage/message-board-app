@@ -1,9 +1,12 @@
 const { Router } = require('express')
 const router = Router()
+const Messages = require('../db/messages')
 
-router.get('/', (req, res) => {
+// get all messages
+router.get('/', async (req, res) => {
+  const messages = await Messages.findAll({})
   res.json({
-    message: 'message',
+    data: messages,
   })
 })
 

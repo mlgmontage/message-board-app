@@ -4,10 +4,13 @@ const cors = require('cors')
 const morgan = require('morgan')
 require('dotenv').config()
 
-app.use('/messages', require('./api/messages'))
+// middlewares
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
+
+// api routes
+app.use('/messages', require('./api/messages'))
 
 const port = process.env.PORT || 1337
 app.listen(port, () =>
