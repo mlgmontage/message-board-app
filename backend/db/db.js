@@ -1,8 +1,9 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require('sequelize')
+require('dotenv').config()
 
 const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "../db/messagesDB.sqlite",
-});
+  dialect: 'sqlite',
+  storage: process.env.DATABASE_URI,
+})
 
-module.exports = sequelize;
+module.exports = sequelize

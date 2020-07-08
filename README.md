@@ -1,5 +1,7 @@
 # Message board app
 
+[Link to trello board](https://trello.com/b/YW9WzOrw/message-board-app)
+
 ### Frontend (Vanilla JS)
 
 - skeleton css
