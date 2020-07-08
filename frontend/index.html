@@ -9,6 +9,30 @@
   </head>
   <body>
     <h1 class="welcome">Welcome to our message board</h1>
+    <div class="container">
+      <!-- Message form -->
+      <form id="messageForm">
+        <div class="row">
+          <div class="u-full-width">
+            <label for="usernameInput">Your username</label>
+            <input
+              class="u-full-width"
+              type="email"
+              placeholder="Your username"
+              id="usernameInput"
+            />
+          </div>
+          <label for="messageInput">Message</label>
+          <textarea
+            class="u-full-width"
+            placeholder="Hi Dave …"
+            id="messageInput"
+          ></textarea>
+          <input class="button-primary" type="submit" value="Send" />
+        </div>
+      </form>
+      <!-- End of Message form -->
+    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>
