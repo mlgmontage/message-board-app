@@ -9,7 +9,7 @@
 - express
 - morgan
 - cors
-- knex
+- sequelize
 - sqlite3
 
 ### Database
