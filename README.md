@@ -14,6 +14,12 @@
 - sequelize
 - sqlite3
 
+### API
+
+- `GET: /messages` - list of messages
+- `POST: /messages` - insert message
+- `DELETE: /messages` - delete message
+
 ### Database
 
 - sqlite
