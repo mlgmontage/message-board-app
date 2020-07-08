@@ -8,3 +8,8 @@
   background-color: #eee;
   box-shadow: 5px 5px #ddd;
 }
+
+#loadMore {
+  display: block;
+  margin: auto;
+}

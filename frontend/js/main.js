@@ -1,71 +1,85 @@
 // Variables
-const API_URL = 'http://localhost:1337/messages'
+const API_URL = "http://localhost:1337/messages";
+let offset = 0;
+let limit = 5;
 
 // DOM element
-const formElm = document.querySelector('#messageForm')
-const sendButton = document.querySelector('#sendButton')
-const boardElm = document.querySelector('#board')
+const formElm = document.querySelector("#messageForm");
+const sendButton = document.querySelector("#sendButton");
+const boardElm = document.querySelector("#board");
+const loadMoreButton = document.querySelector("#loadMore");
 
 // Display message
-displayMessages()
+displayMessages();
 
 // Event handlers
 
-formElm.addEventListener('submit', async (event) => {
-  event.preventDefault()
+loadMoreButton.addEventListener("click", (event) => {
+  offset = offset + limit;
+  displayMessages(false);
+});
 
-  const formData = new FormData(formElm)
-  const username = formData.get('username')
-  const message = formData.get('message')
+formElm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(formElm);
+  const username = formData.get("username");
+  const message = formData.get("message");
 
   // validate data
-  if (!username.trim()) return
-  if (!message.trim()) return
+  if (!username.trim()) return;
+  if (!message.trim()) return;
 
   // inserting
   const response = await fetch(API_URL, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({ username, message }),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-  })
+  });
 
-  const inserted = await response.json()
-  console.log(inserted)
+  const inserted = await response.json();
+  displayMessages();
 
-  formElm.reset()
-})
+  formElm.reset();
+});
 
 // Utils
-async function displayMessages() {
-  const response = await fetch(API_URL)
-  const messages = await response.json()
+async function displayMessages(reset = true) {
+  fetch(`${API_URL}?limit=${limit}&offset=${offset}`)
+    .then((response) => response.json())
+    .then((messages) => {
+      if (reset) {
+        boardElm.innerHTML = "";
+      }
 
-  messages.data.forEach((message) => {
-    console.log(message)
-    boardElm.appendChild(
-      messageElm(message.username, message.message, message.createdAt),
-    )
-  })
+      console.log(messages.pagination);
+
+      messages.data.map((message) => {
+        boardElm.appendChild(
+          messageElm(message.username, message.message, message.createdAt)
+        );
+      });
+    });
 }
 
 function messageElm(username, message, createdDate) {
-  const entry = document.createElement('div')
-  entry.classList.add('entry')
+  const entry = document.createElement("div");
+  entry.classList.add("entry");
 
-  const usernameElm = document.createElement('h3')
-  usernameElm.textContent = username
+  const usernameElm = document.createElement("h3");
+  usernameElm.textContent = username;
 
-  const messageElm = document.createElement('p')
-  messageElm.textContent = message
+  const messageElm = document.createElement("p");
+  messageElm.textContent = message;
 
-  const created = document.createElement('small')
-  created.textContent = createdDate
+  const created = document.createElement("small");
+  created.textContent = createdDate;
 
-  entry.appendChild(usernameElm)
-  entry.appendChild(messageElm)
-  entry.appendChild(created)
+  entry.appendChild(usernameElm);
+  entry.appendChild(messageElm);
+  entry.appendChild(created);
 
-  return entry
+  return entry;
 }
