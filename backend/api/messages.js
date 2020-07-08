@@ -22,4 +22,28 @@ router.get('/', async (req, res) => {
   })
 })
 
+// insert message
+router.post('/', async (req, res) => {
+  const { username, message } = req.body
+  const inserted = await Messages.create({ username, message })
+  res.json({
+    message: 'Message has been successfully inserted',
+    data: inserted,
+  })
+})
+
+router.delete('/', async (req, res) => {
+  const { id } = req.body
+  const deleted = await Messages.destroy({
+    where: {
+      id,
+    },
+  })
+
+  res.json({
+    message: 'Successfully deleted',
+    numberOfdeleted: deleted,
+  })
+})
+
 module.exports = router
