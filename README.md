@@ -5,6 +5,10 @@
 ### Frontend (Vanilla JS)
 
 - skeleton css
+- Vanilla JS
+- Static HTML
+
+![Front](assets/VannilaJS.png)
 
 ### Backend
 
