@@ -1,6 +1,6 @@
 # Message board app
 
-[Link to trello board](https://trello.com/b/YW9WzOrw/message-board-app)
+[Trello board](https://trello.com/b/YW9WzOrw/message-board-app)
 
 ### Frontend (Vanilla JS)
 
@@ -13,6 +13,7 @@
 - cors
 - sequelize
 - sqlite3
+- yup (data validation)
 
 ### API
 

@@ -18,6 +18,10 @@ formElm.addEventListener('submit', async (event) => {
   const username = formData.get('username')
   const message = formData.get('message')
 
+  // validate data
+  if (!username.trim()) return
+  if (!message.trim()) return
+
   // inserting
   const response = await fetch(API_URL, {
     method: 'POST',

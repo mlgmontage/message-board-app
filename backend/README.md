@@ -5,3 +5,4 @@
 - cors
 - sequelize
 - sqlite3
+- yup (data validation)
